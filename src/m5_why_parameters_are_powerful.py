@@ -23,8 +23,20 @@ def main():
     # -------------------------------------------------------------------------
     # draw_circles(rg.Point(100, 50))
     # draw_circles(rg.Point(-200, 0))
-    better_draw_circles(rg.Point(-250,-250),5)
-    better_draw_circles(rg.Point(100,50),25)
+
+    # better_draw_circles(rg.Point(-250,-250),5)
+    # better_draw_circles(rg.Point(100,50),25)
+
+    # even_better_draw_circles(rg.Point(-250,-250),7,4,'red',5)
+    # even_better_draw_circles(rg.Point(100,50),10,20,'blue',3)
+
+    final_draw_circles(rg.Point(0,150),5,16,'blue',3)
+    final_draw_circles(rg.Point(0,150),10,8,'yellow',3)
+
+    final_draw_circles(rg.Point(0,-150),5,16,'blue',3)
+    final_draw_circles(rg.Point(0,-150),10,8,'orange',3)
+
+
 
     window.update()
     window.close_on_mouse_click()
@@ -148,7 +160,7 @@ def better_draw_circles(point,radii):
 
 
 ###############################################################################
-# TODO: 4a.
+# DONE: 4a.
 #   In the previous _TODO_, you made a MORE POWERFUL version
 #   of   draw_circles   by introducing a new PARAMETER for the amount
 #   by which the radii of the concentric circles increase.
@@ -170,7 +182,7 @@ def better_draw_circles(point,radii):
 #   to the body of the   even_better_draw_circles   function defined below.
 #   Then add parameters and modify the code to make them work!
 #
-# TODO: 4b.
+# DONE: 4b.
 #   In   main  at the place indicated, comment-out the existing calls
 #   to  better_draw_circles  and add at least two calls to the improved
 #   even_better_draw_circles  function, to TEST that your modified code is
@@ -178,17 +190,51 @@ def better_draw_circles(point,radii):
 #
 ###############################################################################
 
-def even_better_draw_circles(point):
+def even_better_draw_circles(point,radii,amount,color,thickness):
     """ An improved version of draw_circles, per the _TODO_ above. """
     # READ the above _TODO_ and then copy-paste code from better_circles here:
+    turtle = rg.SimpleTurtle()
+    turtle.pen = rg.Pen(color,thickness)
+    turtle.pen_up()
+    turtle.go_to(point)
+    turtle.set_heading(0)  # Point "east" (towards the right)
+
+    for k in range(0, amount):  # k becomes 1, 2, 3, ... 10
+
+        turtle.pen_up()
+
+        # Go DOWN 15 pixels, ending up pointing east again
+        turtle.right(90)
+        turtle.forward(radii)
+        turtle.left(90)
+
+        turtle.pen_down()
+        turtle.draw_circle(radii * k)  # Radius 15, 30, 45, 60, ...
 
 
 ###############################################################################
-# TODO: 5.
+# DONE: 5.
 #
 # Finally, comment-out the existing calls to  even_better_draw_circles  and
 # add code in   main  to draw various circles that form a BEAUTIFUL picture!
 ###############################################################################
+def final_draw_circles(point,radii,amount,color,thickness):
+    turtle = rg.SimpleTurtle()
+    turtle.pen = rg.Pen(color, thickness)
+    turtle.pen_up()
+    turtle.go_to(point)
+    turtle.set_heading(0)  # Point "east" (towards the right)
+
+    for k in range(0, amount):
+
+        turtle.pen_up()
+
+        turtle.right(90)
+        turtle.forward(radii)
+        turtle.left(90)
+
+        turtle.pen_down()
+        turtle.draw_circle(radii * k)
 
 
 # -----------------------------------------------------------------------------
